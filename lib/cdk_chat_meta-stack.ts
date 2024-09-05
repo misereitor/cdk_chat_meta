@@ -30,17 +30,21 @@ export class CdkChatMetaStack extends cdk.Stack {
       iamROle.addToPolicy(policyStatement);
     });
 
-    const lambdaFunction = new lambda.Function(this, 'LambdaFunction', {
+    const lambdaWebhookMeta = new lambda.Function(this, 'webhookmeta', {
       runtime: lambda.Runtime.NODEJS_20_X,
       code: lambda.Code.fromAsset('lambda', {
         exclude: ['dist', 'node_modules']
       }),
       environment: environment,
-      handler: 'src/index.handler',
+      handler: 'src/meta/webhook/webhook.handler',
       role: iamROle,
       timeout: cdk.Duration.seconds(10),
       memorySize: 128,
       retryAttempts: 0
+    });
+
+    lambdaWebhookMeta.addFunctionUrl({
+      authType: lambda.FunctionUrlAuthType.NONE
     });
   }
 }

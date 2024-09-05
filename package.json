@@ -13,6 +13,7 @@
     "deploy": "cd lambda && npm run build && cd .. && npm run build && cdk deploy && npm run clean"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.143",
     "@types/jest": "^29.5.12",
     "@types/node": "20.14.9",
     "@types/pg": "^8.11.6",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "2.154.1",
+    "aws-lambda": "^1.0.7",
     "axios": "^1.7.5",
     "constructs": "^10.0.0",
     "dotenv": "^16.4.5",
